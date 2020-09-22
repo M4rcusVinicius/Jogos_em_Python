@@ -7,7 +7,7 @@ def jogar():
 
     arquivo = open("Palavras.txt", "r")
     palavras = []
-
+    
     for linhas in arquivo:
         linha = linha.strip()
         palavras.append(linha)
