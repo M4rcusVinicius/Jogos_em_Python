@@ -5,14 +5,15 @@ def jogar():
 
     Capa()
     palavra_secreta = palavra()
-    print(palavra_secreta)
+    print("")
     letras_acertadas = letras(palavra_secreta)
     print_letras(letras_acertadas)
 
     erros = 0
+    desenha_forca(erros)
 
     while True:
-        chute = input("Qual letra? ").strip().upper()
+        chute = input("Letra escolhida : ").strip().upper()
 
         if(chute in palavra_secreta):
             marca_chute_correto(chute, letras_acertadas, palavra_secreta)
@@ -43,7 +44,7 @@ def print_letras(letras_acertadas):
     print("|| ", end = "")
     for cont, letra in enumerate(letras_acertadas):
         if cont == (len(letras_acertadas) - 1):
-            print(f"{letra} ||")
+            print(f"{letra} ||\n")
         else:
             print(letra, end = " - ")
 
@@ -151,19 +152,22 @@ def letras(palavra):
 # ==========================================================
 
 def palavra():
-    tema = int(input("""
-    |1| Frutas
-    |2| Objetos
-    |3| Animais
-    Escolha um dos temas para jogar : 
-    """)).strip
+    print("")
+    print("|1| Frutas")
+    print("|2| Objetos")
+    print("|3| Animais")
+    print("|4| Tudo")
+    tema = int(input("Escolha um dos temas para jogar : "))
+    if tema == 4:
+        tema = random.randrange(1,4)
     if tema == 1:
         arquivo_escolhido = "Frutas.txt"
     if tema == 2:
         arquivo_escolhido = "Objetos.txt"
     if tema == 3:
         arquivo_escolhido = "Animais.txt"
-    arquivo = open("arquivo_escolhido", "r")
+
+    arquivo = open(arquivo_escolhido, "r")
     palavras = []
 
     for linha in arquivo:
