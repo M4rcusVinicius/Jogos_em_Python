@@ -1,0 +1,110 @@
+Abelha
+Alce
+Anta
+Aranha
+Arara
+Avestruz
+Baleia
+Barata
+Borboleta
+Cabra
+Camelo
+Capivara
+Caranguejo
+Carrapato
+Cascavel
+Castor
+Cavalo
+Chimpanzé
+Chupim
+Cigarra
+Coala
+Coelho
+Corvo
+Elefante
+Esquilo
+Foca
+Gafanhoto
+Galinha
+Ganso
+Gato
+Girafa
+Golfinho
+Gorila
+Gralha
+Hamster
+Hipopótamo
+Jacaré - Caiman crocodilus
+Jararaca
+Jobóia
+Lagartixa
+Lagarto
+Leão
+Leopardo
+Lhama
+Lobo
+Lombriga
+Lontra
+Lula
+Mico-ruivo - Cebus robustus
+Mosquito da Dengue - Aedes aegypt
+Namorado (peixe) - Pseudopercis numida
+Onça - Panthera onca
+Orangotango - Pongo pygmaeus
+Ostra japonesa - Crossaostra gigas
+Ostra - Ostrea virginica
+Paca - Agouti paca
+Pacu - Piaractus mesopotamicus
+Panda Gigante (urso) - Ailuropoda melanoleuca
+Papagaio - Psitacus erithacus
+Pato - Anas Platyrhynchos
+Pavão - Pavo cristatus
+Peixe-espada - Trichiurus lepturus
+Peru - Meleagris gallopavo
+Pica-pau - Picumnus spp.
+Pingüim - Aptenodytes forsteri
+Pintado - Pseudoplatystoma coruscans
+Piolho - Pediculum humanus
+Piranha - Pygocentrus piraya
+Pirarocu - Arapaima gigas
+Polvo - Octopus spp.
+Pombo - Columba livia
+Porco - Sus scrofa
+Porco-do-mato - Tayassu tajacu
+Protozoário (Chagas) - Tripanossoma cruzi
+Pulga - Pulex irritans
+Pulgão - Toxoptera spp.
+Puma - Felis concolor
+Quero-quero - Vanellus chilensis
+Rã - Rana spp.
+Raposa - Vulpes vulpes
+Rato - Ratus ratus
+Rinoceronte - Rhinoceros unicornis
+Robalo - Centropomus spp.
+Sabiá - Saltator coerulescens
+Sagüi - Saguinus spp.
+Salmão - Salmo salar
+Sapo cururu - Bufo marinus
+Sapo - Bufo spp.
+Saracura - Aramides saracura
+Saracura - Rallus maculatus
+Sardinha - Sardina pilchardus
+Saúva (formiga) - Atta sexdens
+Tamanduá - Mirmecofaga tridactila
+Tatu - Tolipeutes matacus
+Tico-tico - Zonotrichia capensis
+Tigre - Panthera tigris
+Touro, vaca - Bos taurus
+Traira - Hoplias malabaricus
+Tucano - Ramphastus tucanus
+Tucunaré - Cichla ocellaris
+Uirapuru - Cyphorhinus aradus
+Urso - Ursus spp.
+Urubu - Coragyps spp.
+Urubu rei - Sarcorhamphus papa
+Urutu - Bothrops alternata
+Veado - Mazama spp.
+Veado mateiro - Mazama americana
+Vespa - Polistes gallicus
+Xexéu - Cacicus cela
+Zebra - Equus burchelli
