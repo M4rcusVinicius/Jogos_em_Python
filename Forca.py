@@ -6,6 +6,9 @@ def jogar():
     Capa()
     palavra_secreta = palavra()
     print("")
+    print(f"A palavra secreta tem {len(palavra_secreta)} letras")
+    print("")
+
     letras_acertadas = letras(palavra_secreta)
     print_letras(letras_acertadas)
 
@@ -46,7 +49,7 @@ def print_letras(letras_acertadas):
         if cont == (len(letras_acertadas) - 1):
             print(f"{letra} ||\n")
         else:
-            print(letra, end = " - ")
+            print(letra, end = " ")
 
 def desenha_forca(erros):
     print("  _______     ")
@@ -161,11 +164,11 @@ def palavra():
     if tema == 4:
         tema = random.randrange(1,4)
     if tema == 1:
-        arquivo_escolhido = "Frutas.txt"
+        arquivo_escolhido = "Arquivo_Secreto//Frutas.txt"
     if tema == 2:
-        arquivo_escolhido = "Objetos.txt"
+        arquivo_escolhido = "Arquivo_Secreto//Objetos.txt"
     if tema == 3:
-        arquivo_escolhido = "Animais.txt"
+        arquivo_escolhido = "Arquivo_Secreto//Animais.txt"
 
     arquivo = open(arquivo_escolhido, "r")
     palavras = []
