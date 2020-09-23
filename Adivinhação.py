@@ -7,10 +7,10 @@ def jogar():
     total_de_tentativas = 0
     pontos = 1000
 
-    dificuldade()
+    total_de_tentativas = dificuldade()
 
     for rodada in range(1, total_de_tentativas + 1):
-        print("Tentativa {} de {}".format(rodada, total_de_tentativas))
+        print("\nTentativa {} de {}".format(rodada, total_de_tentativas))
 
         chute = int(input("Digite um número entre 1 e 100: "))
 
@@ -27,6 +27,9 @@ def jogar():
             elif chute < numero_secreto:
                 print("Você errou! O seu chute foi menor do que o número secreto.")
             pontos = pontos - abs(numero_secreto - chute)
+        
+            if total_de_tentativas == rodada:
+                mensagem_perdedor(numero_secreto)
 
     print("Fim do jogo")
 
@@ -47,6 +50,7 @@ def dificuldade():
         total_de_tentativas = 10
     else:
         total_de_tentativas = 5
+    return total_de_tentativas
 
 def mensagem_vencedor(pontos):
     print("Parabéns, você ganhou!")
@@ -61,6 +65,26 @@ def mensagem_vencedor(pontos):
     print("           ) (          ")
     print("         _.' '._        ")
     print("        '-------'       ")
+
+def mensagem_perdedor(numero_secreto):
+    print("Você perdeu")
+    print(f"O número secreto era {numero_secreto}")
+    print("    _______________         ")
+    print("   /               \       ")
+    print("  /                 \      ")
+    print("//                   \/\  ")
+    print("\|   XXXX     XXXX   | /   ")
+    print(" |   XXXX     XXXX   |/     ")
+    print(" |   XXX       XXX   |      ")
+    print(" |                   |      ")
+    print(" \__      XXX      __/     ")
+    print("   |\     XXX     /|       ")
+    print("   | |           | |        ")
+    print("   | I I I I I I I |        ")
+    print("   |  I I I I I I  |        ")
+    print("   \_             _/       ")
+    print("     \_         _/         ")
+    print("       \_______/           ")
 
 if(__name__ == "__main__"):
     jogar()
