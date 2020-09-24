@@ -40,10 +40,10 @@ def Capa():
     print("="*50)
 
 def print_letras(letras_acertadas):
-    print("|| ", end = "")
+    print(" ", end = "")
     for cont, letra in enumerate(letras_acertadas):
         if cont == (len(letras_acertadas) - 1):
-            print(f"{letra} ||\n")
+            print(f"{letra} \n")
         else:
             print(letra, end = " ")
 

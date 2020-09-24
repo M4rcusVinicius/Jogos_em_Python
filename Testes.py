@@ -1,6 +1,8 @@
 import random
 import os
 
+erro = ""
+
 def jogar():
     
     imprime_logo()
@@ -10,7 +12,23 @@ def jogar():
     palavra_secreta = sorteia_palavra(arquivo)
 
     print(f"\nA palavra secreta tem {len(palavra_secreta)} letras\n")
-    jogo_forca(palavra_secreta)
+    loop_jogo_forca(palavra_secreta)
+
+def loop_jogo_forca(palavra_secreta):
+    letras = ["_" for letra in palavra_secreta]
+    tentativa = 0
+    while True:
+        print_forca(tentativa, letras)
+        chute = input("Letra escolhida : ").strip().upper()
+
+        adciona_conquistas(chute, letras, palavra_secreta, tentativa)
+
+        if tentativa == 7:
+            mensagem_perdedor(palavra_secreta)
+            break
+        elif "_" not in letras:
+            mensagem_vencedor()
+            break
 
 def imprime_logo():
     os.system('cls') or None
@@ -52,16 +70,14 @@ def sorteia_palavra(arquivo):
     palavra_secreta = palavras[n].upper()
     return palavra_secreta
 
-def jogo_forca(palavra_secreta):
-    letras = ["_" for letra in palavra_secreta]
-    tentativa = 0
-    while True:
-        if tentativa == 7:
-            mensagem_perdedor(palavra_secreta)
-            break
-        elif "_" not in letras:
-            mensagem_vencedor()
-            break
+def adciona_conquistas(chute, letras, palavra_secreta, tentativa):
+    if not bool(erro):
+        if chute in palavra_secreta :
+            marca_chute_correto(chute, letras, palavra_secreta)
+        else:
+            tentativa += 1
+    else:
+        erro = ""
 
 def mensagem_perdedor(palavra_secreta):
     print("\nPuxa, você foi enforcado!")
@@ -83,6 +99,52 @@ def mensagem_perdedor(palavra_secreta):
     print("     \_         _/         ")
     print("       \_______/           ")
 
+def print_forca(tentativa, letras):
+    imprime_logo()
+    
+    desenha_forca(tentativa)
+    print_letras(letras)
+    
+    print_historico_letras(lista)
+    print_erro()
+    erro = ""
+
+def print_letras(letras):
+    print(" ", end = "")
+    for cont, letra in enumerate(letras):
+        if cont == (len(letras) - 1):
+            print(f"{letra} \n")
+        else:
+            print(letra, end = " ")
+
+def historico_de_letras(chute):
+    lista = {}
+    if chute not in lista:
+        lista.append(chute)
+    else:
+        erro = "letra_repetida"
+    return lista, erro
+
+def print_historico_letras():
+    historico_de_letrasta, erro = historico_de_letras()
+    
+    if bool(historico_de_letras):
+        print("Letras digitadas :")
+        print("| ", end = "")
+        for cont, letra in enumerate(historico_de_letras):
+            if cont == (len(historico_de_letras) - 1):
+                print(f"{letra} |\n")
+            else:
+                print(letra, end = " - ")
+        
+    if erro == "letra_repetida":
+        print("\033[31mEssa letra já foi digitada\033[m")
+    erro = ""
+
+def print_erro():
+    if erro == "letra_repetida":
+        print("\033[31mEssa letra já foi digitada\033[m")
+
 def mensagem_vencedor():
     print("Parabéns, você ganhou!")
     print("       ___________      ")
@@ -96,6 +158,60 @@ def mensagem_vencedor():
     print("         _.' '._        ")
     print("        '-------'       ")
 
+def desenha_forca(tentativa):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if(tentativa == 0):
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 1):
+        print (" |      (_)   ")
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 2):
+        print (" |      (_)   ")
+        print (" |      \     ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 3):
+        print (" |      (_)   ")
+        print (" |      \|    ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 4):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 5):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |            ")
+
+    if(tentativa == 6):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      /     ")
+
+    if (tentativa == 7):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      / \   ")
+
+    print(" |            ")
+    print("_|___  ", end="")
 
 if(__name__ == "__main__"):
     jogar()
