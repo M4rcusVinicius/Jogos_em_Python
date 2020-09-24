@@ -6,7 +6,6 @@ Apontador
 Almofada
 Abajour
 Bola
-Balão
 Botas
 Bexiga
 Borracha
@@ -17,11 +16,8 @@ Caneta
 Camisa
 Camiseta
 Camisola
-Calça
-Castiçal
 Copo
 Carimbo
-Câmera
 Cachecol
 Diamante
 Dentadura
@@ -49,10 +45,8 @@ Gravata
 Gorro
 Harpa
 Hidratante
-Hélice
 Holofote
 Isqueiro 
-Imã
 Isopor
 Isca
 Incenso
@@ -64,7 +58,6 @@ Janela
 Luvas
 Lampada
 Leque
-Lenço
 Livro
 Lanterna
 Lixeira
@@ -75,7 +68,6 @@ Maquiagem
 Meias
 Mala
 Mochila
-Maçarico
 Navalha
 Novelo
 Odalisca
@@ -103,7 +95,6 @@ Tesoura
 Teclado
 Telefone
 Tampa
-Termômetro
 Trena
 Taco
 Telha

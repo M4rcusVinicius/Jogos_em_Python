@@ -32,11 +32,9 @@ Golfinho
 Gorila
 Gralha
 Hamster
-Hipopótamo
 Jararaca
 Lagartixa
 Lagarto
-Leão
 Leopardo
 Lhama
 Lobo
@@ -49,7 +47,6 @@ Ostra
 Panda
 Papagaio
 Pato
-Pavão
 Pinguim
 Piolho
 Piranha
