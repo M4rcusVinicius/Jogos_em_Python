@@ -1,46 +1,42 @@
 import random
-
+import os
+lista = []
+erro = ""
 
 def jogar():
 
     Capa()
     palavra_secreta = palavra()
     print("")
-    print(f"A palavra secreta tem {len(palavra_secreta)} letras")
-    print("")
+    print(f"A palavra secreta tem {len(palavra_secreta)} letras\n")
 
     letras_acertadas = letras(palavra_secreta)
-    print_letras(letras_acertadas)
-
-    erros = 0
-    desenha_forca(erros)
+    tentativa = 0
 
     while True:
-        chute = input("Letra escolhida : ").strip().upper()
-
-        if(chute in palavra_secreta):
-            marca_chute_correto(chute, letras_acertadas, palavra_secreta)
-        else:
-            erros += 1
-            desenha_forca(erros)
-
-        if erros == 7:
+        if tentativa == 7:
             mensagem_perdedor(palavra_secreta)
             break
-        if "_" not in letras_acertadas:
+        elif "_" not in letras_acertadas:
             mensagem_vencedor()
             break
-
-        print_letras(letras_acertadas)
-
+        else:
+            chute = print_forca(tentativa, letras_acertadas)
+            historico_de_letras(chute)
+            if not bool(erro):
+                if chute in palavra_secreta :
+                    marca_chute_correto(chute, letras_acertadas, palavra_secreta)
+                else:
+                    tentativa += 1
 
 # ==========================================================
 # Funções referentes a exibição de imagens ou textos
 # ==========================================================
 
 def Capa():
+    os.system('cls') or None
     print("="*50)
-    print(f"{'Bem vindo ao jogo de Adivinhação!':^50}")
+    print(f"{'Bem vindo ao jogo de Forca!':^50}")
     print("="*50)
 
 def print_letras(letras_acertadas):
@@ -51,55 +47,60 @@ def print_letras(letras_acertadas):
         else:
             print(letra, end = " ")
 
-def desenha_forca(erros):
+def desenha_forca(tentativa):
     print("  _______     ")
     print(" |/      |    ")
 
-    if(erros == 1):
+    if(tentativa == 0):
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+
+    if(tentativa == 1):
         print (" |      (_)   ")
         print (" |            ")
         print (" |            ")
         print (" |            ")
 
-    if(erros == 2):
+    if(tentativa == 2):
         print (" |      (_)   ")
         print (" |      \     ")
         print (" |            ")
         print (" |            ")
 
-    if(erros == 3):
+    if(tentativa == 3):
         print (" |      (_)   ")
         print (" |      \|    ")
         print (" |            ")
         print (" |            ")
 
-    if(erros == 4):
+    if(tentativa == 4):
         print (" |      (_)   ")
         print (" |      \|/   ")
         print (" |            ")
         print (" |            ")
 
-    if(erros == 5):
+    if(tentativa == 5):
         print (" |      (_)   ")
         print (" |      \|/   ")
         print (" |       |    ")
         print (" |            ")
 
-    if(erros == 6):
+    if(tentativa == 6):
         print (" |      (_)   ")
         print (" |      \|/   ")
         print (" |       |    ")
         print (" |      /     ")
 
-    if (erros == 7):
+    if (tentativa == 7):
         print (" |      (_)   ")
         print (" |      \|/   ")
         print (" |       |    ")
         print (" |      / \   ")
 
     print(" |            ")
-    print("_|___         ")
-    print()
+    print("_|___  ", end="")
 
 def mensagem_vencedor():
     print("Parabéns, você ganhou!")
@@ -134,6 +135,17 @@ def mensagem_perdedor(palavra_secreta):
     print("     \_         _/         ")
     print("       \_______/           ")
 
+def print_forca(tentativa, letras_acertadas):
+    Capa()
+    
+    desenha_forca(tentativa)
+    print_letras(letras_acertadas)
+    
+    print_historico_letras()
+    print_erro()
+
+    chute = input("Letra escolhida : ").strip().upper()
+    return chute
 
 # ==========================================================
 # Funções referentes a formatação de strings
@@ -142,17 +154,30 @@ def mensagem_perdedor(palavra_secreta):
 def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
     index = 0
     for letra in palavra_secreta:
-        if (chute == letra):
+        if chute == letra:
             letras_acertadas[index] = letra
         index += 1
+
+def print_historico_letras():
+    if bool(lista):
+        print("Letras digitadas :")
+        print("| ", end = "")
+        for cont, letra in enumerate(lista):
+            if cont == (len(lista) - 1):
+                print(f"{letra} |\n")
+            else:
+                print(letra, end = " - ")
 
 def letras(palavra):
     return ["_" for letra in palavra]
 
+def print_erro():
+    if erro == "letra_repetida":
+        print("\033[31mEssa letra já foi digitada\033[m")
 
 # ==========================================================
 # Funções de acesso ao banco de dados
-# ==========================================================
+# =========================================================
 
 def palavra():
     print("")
@@ -183,6 +208,13 @@ def palavra():
     palavra_secreta = palavras[numero].upper()
     return palavra_secreta
 
+def historico_de_letras(chute):
+    if chute not in lista:
+        lista.append(chute)
+        erro = ""
+    else:
+        erro = "letra_repetida"
+        return erro
 
 if(__name__ == "__main__"):
     jogar()
