@@ -1,8 +1,6 @@
 import random
 import os
 
-erro = ""
-
 def jogar():
     
     imprime_logo()
@@ -16,12 +14,17 @@ def jogar():
 
 def loop_jogo_forca(palavra_secreta):
     letras = ["_" for letra in palavra_secreta]
+    chute = ""
     tentativa = 0
     while True:
+        erro = ""
         print_forca(tentativa, letras)
+        if bool(chute):
+            erro = print_historico_letras(chute)
         chute = input("Letra escolhida : ").strip().upper()
-
-        adciona_conquistas(chute, letras, palavra_secreta, tentativa)
+        
+        if not bool(erro):
+            adciona_conquistas(chute, letras, palavra_secreta, tentativa)
 
         if tentativa == 7:
             mensagem_perdedor(palavra_secreta)
@@ -71,13 +74,14 @@ def sorteia_palavra(arquivo):
     return palavra_secreta
 
 def adciona_conquistas(chute, letras, palavra_secreta, tentativa):
-    if not bool(erro):
-        if chute in palavra_secreta :
-            marca_chute_correto(chute, letras, palavra_secreta)
-        else:
-            tentativa += 1
+    if chute in palavra_secreta :
+        index = 0
+        for letra in palavra_secreta:
+            if chute == letra:
+                letras[index] = letra
+            index += 1
     else:
-        erro = ""
+        tentativa += 1
 
 def mensagem_perdedor(palavra_secreta):
     print("\nPuxa, você foi enforcado!")
@@ -104,10 +108,6 @@ def print_forca(tentativa, letras):
     
     desenha_forca(tentativa)
     print_letras(letras)
-    
-    print_historico_letras(lista)
-    print_erro()
-    erro = ""
 
 def print_letras(letras):
     print(" ", end = "")
@@ -118,32 +118,29 @@ def print_letras(letras):
             print(letra, end = " ")
 
 def historico_de_letras(chute):
-    lista = {}
+    lista = []
+    erro = ""
     if chute not in lista:
         lista.append(chute)
     else:
         erro = "letra_repetida"
     return lista, erro
 
-def print_historico_letras():
-    historico_de_letrasta, erro = historico_de_letras()
+def print_historico_letras(chute):
+    lista, erro = historico_de_letras(chute)
     
-    if bool(historico_de_letras):
+    if bool(lista):
         print("Letras digitadas :")
         print("| ", end = "")
-        for cont, letra in enumerate(historico_de_letras):
-            if cont == (len(historico_de_letras) - 1):
+        for cont, letra in enumerate(lista):
+            if cont == (len(lista) - 1):
                 print(f"{letra} |\n")
             else:
                 print(letra, end = " - ")
         
     if erro == "letra_repetida":
         print("\033[31mEssa letra já foi digitada\033[m")
-    erro = ""
-
-def print_erro():
-    if erro == "letra_repetida":
-        print("\033[31mEssa letra já foi digitada\033[m")
+    return erro
 
 def mensagem_vencedor():
     print("Parabéns, você ganhou!")
