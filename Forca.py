@@ -23,15 +23,15 @@ def loop_jogo_forca(palavra_secreta):
         print_forca(tentativa, letras)
         print(f"Tentativa {tentativa + 1} de 7\n")
 
-        if bool(chute) and erro == "":
+        if chute != "" and erro == "":
             erro = print_historico_letras(lista_historico)
         
-        print_erro(erro)
+        print_erro(erro, lista_historico)
         
         chute, erro = pergunta_chute()
-        lista_historico, erro = historico_de_letras(chute, lista_historico)
 
         if erro == "":
+            lista_historico, erro = historico_de_letras(chute, lista_historico)
             if chute in palavra_secreta :
                 index = 0
                 for letra in palavra_secreta:
@@ -128,13 +128,27 @@ def print_letras(letras):
         else:
             print(letra, end = " ")
 
-def print_erro(erro):
-    if erro == "letra_repetida":
-        print("\033[31mEssa letra já foi digitada\033[m\n")
-    if erro == "letra_invalida":
-        print("\033[31mDigite apenas letras de alfabeto\033[m")
+def print_erro(erro, lista_historico):
+    if erro != "":
+        if erro == "letra_repetida":
+            print("\033[31mEssa letra já foi digitada !\033[m\n")
+            historico_red(lista_historico)
+        if erro == "letra_invalida":
+            print("\033[31mDigite apenas letras de alfabeto\n\033[m")
+            historico_red(lista_historico)
     erro = ""
-    
+
+def historico_red(lista_historico):
+    if lista_historico != []:    
+        print("\033[31mVocê já digitou as letras :")
+        print("| ", end = "")
+        for cont, letra in enumerate(lista_historico):
+            if cont == (len(lista_historico) - 1):
+                print(f"{letra} |\033[m")
+            else:
+                print(letra, end = " - ")
+        print("\033[m")
+
 def historico_de_letras(chute, lista_historico):
     erro = ""
     if chute not in lista_historico:
@@ -144,8 +158,7 @@ def historico_de_letras(chute, lista_historico):
     return (lista_historico, erro)
 
 def print_historico_letras(lista_historico):
-   
-    if bool(lista_historico):
+    if lista_historico != []:
         print("Letras digitadas :")
         print("| ", end = "")
         for cont, letra in enumerate(lista_historico):
@@ -155,37 +168,41 @@ def print_historico_letras(lista_historico):
                 print(letra, end = " - ")
 
 def mensagem_vencedor():
-    print("Parabéns, você ganhou!")
-    print("       ___________      ")
-    print("      '._==_==_=_.'     ")
-    print("      .-\\:      /-.    ")
-    print("     | (|:.     |) |    ")
-    print("      '-|:.     |-'     ")
-    print("        \\::.    /      ")
-    print("         '::. .'        ")
-    print("           ) (          ")
-    print("         _.' '._        ")
-    print("        '-------'       ")
+    os.system('cls') or None
+    print("\033[32mParabéns, você ganhou!\033[32m")
+    print("\033[33m       ___________      \033[m")
+    print("\033[33m      '._==_==_=_.'     \033[m")
+    print("\033[33m      .-\\:      /-.    \033[m")
+    print("\033[33m     | (|:.     |) |    \033[m")
+    print("\033[33m      '-|:.     |-'     \033[m")
+    print("\033[33m        \\::.    /      \033[m")
+    print("\033[33m         '::. .'        \033[m")
+    print("\033[33m           ) (          \033[m")
+    print("\033[33m         _.' '._        \033[m")
+    print("\033[33m        '-------'       \033[m")
 
 def mensagem_perdedor(palavra_secreta):
+    os.system('cls') or None
     print("\nPuxa, você foi enforcado!")
     print("A palavra era {}".format(palavra_secreta))
+    print("\033[31m                    ")
     print("    _______________         ")
-    print("   /               \       ")
-    print("  /                 \      ")
-    print("//                   \/\  ")
-    print("\|   XXXX     XXXX   | /   ")
+    print("   /               \        ")
+    print("  /                 \       ")
+    print("//                   \/\    ")
+    print("\|   XXXX     XXXX   | /    ")
     print(" |   XXXX     XXXX   |/     ")
     print(" |   XXX       XXX   |      ")
     print(" |                   |      ")
-    print(" \__      XXX      __/     ")
-    print("   |\     XXX     /|       ")
+    print(" \__      XXX      __/      ")
+    print("   |\     XXX     /|        ")
     print("   | |           | |        ")
     print("   | I I I I I I I |        ")
     print("   |  I I I I I I  |        ")
-    print("   \_             _/       ")
-    print("     \_         _/         ")
-    print("       \_______/           ")
+    print("   \_             _/        ")
+    print("     \_         _/          ")
+    print("       \_______/            ")
+    print("                      \033[m")
 
 def desenha_forca(tentativa):
     print("  _______     ")

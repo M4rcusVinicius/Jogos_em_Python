@@ -1,14 +1,12 @@
-while True:
-    while True:
-        alfabeto = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z', 'Ç')
-        try:
-            chute = input("Letra escolhida : ").strip().upper()
-            if chute in alfabeto:
-                break
-            else:
-                print("\033[31mDigite apenas letras de alfabeto\033[m")
-        except:
-            print("\033[31mDigite apenas letras de alfabeto\033[m")
-    print("\033[32mAprovado\033[m")
-    if chute == "Z":
-        break
+arquivo = open(arquivo, "r")
+palavras = []
+
+for linha in arquivo:
+    linha = linha.strip()
+    palavras.append(linha)
+
+arquivo.close()
+
+n = random.randrange(0, len(palavras))
+palavra_secreta = palavras[n].upper()
+return palavra_secreta
